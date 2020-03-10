@@ -1,2 +1,3 @@
 # Bone-Fracture-Detection
-Detect Bone fracture/abnormality using densenet on Stanford's MURA dataset
+Detect Bone fracture/abnormality. 
+Localization part will be put up :)
