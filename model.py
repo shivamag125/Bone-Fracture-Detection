@@ -36,24 +36,6 @@ class Scale(Layer):
     and a sum of a set of constants:
         out = in * gamma + beta,
     where 'gamma' and 'beta' are the weights and biases larned.
-    # Arguments
-        axis: integer, axis along which to normalize in mode 0. For instance,
-            if your input tensor has shape (samples, channels, rows, cols),
-            set axis to 1 to normalize per feature map (channels axis).
-        momentum: momentum in the computation of the
-            exponential average of the mean and standard deviation
-            of the data, for feature-wise normalization.
-        weights: Initialization weights.
-            List of 2 Numpy arrays, with shapes:
-            `[(input_shape,), (input_shape,)]`
-        beta_init: name of initialization function for shift parameter
-            (see [initializers](../initializers.md)), or alternatively,
-            Theano/TensorFlow function to use for weights initialization.
-            This parameter is only relevant if you don't pass a `weights` argument.
-        gamma_init: name of initialization function for scale parameter (see
-            [initializers](../initializers.md)), or alternatively,
-            Theano/TensorFlow function to use for weights initialization.
-            This parameter is only relevant if you don't pass a `weights` argument.
     """
 
     def __init__(self, weights=None, axis=-1, momentum=0.9, beta_init='zero', gamma_init='one', **kwargs):
@@ -93,13 +75,7 @@ class Scale(Layer):
 def identity_block(input_tensor, kernel_size, filters, stage, block):
     """
     The identity_block is the block that has no conv layer at shortcut
-    # Arguments
-        input_tensor: input tensor
-        kernel_size: defualt 3, the kernel size of middle conv layer at main path
-        filters: list of integers, the nb_filters of 3 conv layer at main path
-        stage: integer, current stage label, used for generating layer names
-        block: 'a','b'..., current block label, used for generating layer names
-    """
+       """
     eps = 1.1e-5
     nb_filter1, nb_filter2, nb_filter3 = filters
     conv_name_base = 'res' + str(stage) + block + '_branch'
@@ -132,16 +108,8 @@ def identity_block(input_tensor, kernel_size, filters, stage, block):
 
 
 def conv_block(input_tensor, kernel_size, filters, stage, block, strides=(2, 2)):
-    """ conv_block is the block that has a conv layer at shortcut
-    # Arguments
-        input_tensor: input tensor
-        kernel_size: defualt 3, the kernel size of middle conv layer at main path
-        filters: list of integers, the nb_filters of 3 conv layer at main path
-        stage: integer, current stage label, used for generating layer names
-        block: 'a','b'..., current block label, used for generating layer names
-    Note that from stage 3, the first conv layer at main path is with subsample=(2,2)
-    And the shortcut should have subsample=(2,2) as well
-    """
+    #conv_block is the block that has a conv layer at shortcut
+   
 
     eps = 1.1e-5
     nb_filter1, nb_filter2, nb_filter3 = filters
@@ -182,51 +150,6 @@ def conv_block(input_tensor, kernel_size, filters, stage, block, strides=(2, 2))
 
 def ResNet152(include_top=True, weights='imagenet',
               input_tensor=None, input_shape=None, pooling=None, classes=1000):
-    """ Instantiates the ResNet152 architecture.
-    Optionally loads weights pre-trained
-    on ImageNet. Note that when using TensorFlow,
-    for best performance you should set
-    `image_data_format='channels_last'` in your Keras config
-    at ~/.keras/keras.json.
-    The model and the weights are compatible only with
-    TensorFlow. The data format
-    convention used by the model is the one
-    specified in your Keras config file.
-    # Arguments
-        include_top: whether to include the fully-connected
-            layer at the top of the network.
-        weights: one of `None` (random initialization),
-              'imagenet' (pre-training on ImageNet),
-              or the path to the weights file to be loaded.
-        input_tensor: optional Keras tensor (i.e. output of `layers.Input()`)
-            to use as image input for the model.
-        input_shape: optional shape tuple, only to be specified
-            if `include_top` is False (otherwise the input shape
-            has to be `(224, 224, 3)` (with `channels_last` data format)
-            or `(3, 224, 224)` (with `channels_first` data format).
-            It should have exactly 3 inputs channels,
-            and width and height should be no smaller than 197.
-            E.g. `(200, 200, 3)` would be one valid value.
-        pooling: Optional pooling mode for feature extraction
-            when `include_top` is `False`.
-            - `None` means that the output of the model will be
-                the 4D tensor output of the
-                last convolutional layer.
-            - `avg` means that global average pooling
-                will be applied to the output of the
-                last convolutional layer, and thus
-                the output of the model will be a 2D tensor.
-            - `max` means that global max pooling will
-                be applied.
-        classes: optional number of classes to classify images
-            into, only to be specified if `include_top` is True, and
-            if no `weights` argument is specified.
-    # Returns
-        A Keras model instance.
-    # Raises
-        ValueError: in case of invalid argument for `weights`,
-            or invalid input shape.
-    """
 
     eps = 1.1e-5
 
